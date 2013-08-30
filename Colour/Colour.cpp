@@ -9,10 +9,10 @@ int countR=0,countG=0,countB=0;
 
 void Colour::Colour(int s0, int s1, int s2, int s3)
 {
-pinMode(s0,OUTPUT);
-pinMode(s1,OUTPUT); 
-pinMode(s2,OUTPUT);
-pinMode(s3,OUTPUT);
+  pinMode(s0,OUTPUT);
+  pinMode(s1,OUTPUT); 
+  pinMode(s2,OUTPUT);
+  pinMode(s3,OUTPUT);
 }
 void Colour::TCS()
 {
@@ -33,7 +33,9 @@ void Colour::timer2_init(void)
   TCNT2= 100;    //10 ms overflow again
   TIMSK2 = 0x01; //allow interrupt
 }
+
 int i=0;
+
 ISR(TIMER2_OVF_vect)//the timer 2, 10ms interrupt overflow again. Internal overflow interrupt executive function
 {
 TCNT2=100;
@@ -76,7 +78,7 @@ else
     counter=0;
     delay(2);
 }
-void loop()
+boolean Colour::isGreen()
 {
  delay(10);
  TCS();
@@ -87,9 +89,11 @@ void loop()
            Serial.print("red");
            Serial.print("\n");
            delay(1000);
+		   return false;
       }
      else if((countG>=countR)&&(countG>countB))
       {
+	       return true;
            Serial.print("green");
            Serial.print("\n");
            delay(1000);
@@ -99,10 +103,11 @@ void loop()
            Serial.print("blue");
            Serial.print("\n");
           delay(1000);
+		  return false;
      }
    }
  else 
  {
     delay(1000);       
  }
-}
+}//Not functional
