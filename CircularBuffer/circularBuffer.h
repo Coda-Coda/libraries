@@ -1,9 +1,9 @@
-#ifndef Compass_h
-#define Compass_h
+#ifndef CircularBuffer_h
+#define CircularBuffer_h
 
 #include "Arduino.h"
 
-#define BUFFERSIZE = 100
+#define BUFFER_SIZE 10
 
 class CircularBuffer
 {
@@ -18,6 +18,6 @@ class CircularBuffer
 	int actualSize;
 	int latestPutPosition ();
 	int oldestPutPosition ();
-}
+};
 
 #endif

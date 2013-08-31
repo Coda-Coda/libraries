@@ -1,4 +1,5 @@
 #include "CircularBuffer.h"
+#include "Arduino.h"
 
 CircularBuffer::CircularBuffer()
 {
@@ -47,7 +48,7 @@ int CircularBuffer::oldestPutPosition ()
   else return 0; //This line should never execute
 }
 
-float CircularBuffer.getAverage () {
+float CircularBuffer::getAverage () {
   float sum = 0;
   for(int i=0; i<actualSize; i++){
     sum += buffer[i];
