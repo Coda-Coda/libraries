@@ -85,28 +85,28 @@ void Motors::setActiveSpeeds(float leftSpeed, float rightSpeed) {
   _rightSpeed = rightSpeed;
   
   if (_leftSpeed > 0) {
-    _leftMotor.move(1000000);
+   // _leftMotor.move(1000);
     _leftMotor.setSpeed(_leftSpeed);
   }
   else if (_leftSpeed < 0) {
-    _leftMotor.move(-1000000);
+    //_leftMotor.move(-1000000);
     _leftMotor.setSpeed(_leftSpeed);
   }
   else {
-    _leftMotor.move(0);
+    //_leftMotor.move(0);
     _leftMotor.setSpeed(0);
   }
   
   if (_rightSpeed > 0) {
-    _rightMotor.move(-1000000);
+    //_rightMotor.move(-1000000);
     _rightMotor.setSpeed(-_rightSpeed);
   }
   else if (_rightSpeed < 0) {
-    _rightMotor.move(1000000);
+    //_rightMotor.move(1000000);
     _rightMotor.setSpeed(-_rightSpeed);
   }
   else {
-    _rightMotor.move(0);
+    //_rightMotor.move(0);
     _rightMotor.setSpeed(0);
   }
 }
@@ -128,4 +128,9 @@ void Motors::wait() {
 void Motors::run() {
   _leftMotor.run();
   _rightMotor.run();  
+}
+
+void Motors::runSpeed() {
+  _leftMotor.runSpeed();
+  _rightMotor.runSpeed();
 }
