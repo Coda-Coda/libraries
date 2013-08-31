@@ -7,7 +7,7 @@ CircularBuffer::CircularBuffer()
   position=0;
 }
 
-void CircularBuffer::putValue(int value)
+void CircularBuffer::putValue(float value)
 {
   buffer[position]=value;
   position++;
@@ -52,6 +52,7 @@ float CircularBuffer::getAverage () {
   float sum = 0;
   for(int i=0; i<actualSize; i++){
     sum += buffer[i];
+	yield();
   }
-  return sum;
+  return sum/actualSize;
 }

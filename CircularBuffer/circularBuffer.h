@@ -9,7 +9,7 @@ class CircularBuffer
 {
   public:
 	CircularBuffer();
-	void putValue(int);
+	void putValue(float);
 	float getAverage();
   private:
   	int size;
