@@ -94,7 +94,6 @@ void QTRSensors::read(unsigned int *sensor_values, unsigned char readMode)
 		emittersOff();
 		if(readMode == QTR_EMITTERS_ON_AND_OFF)
 			((QTRSensorsRC*)this)->readPrivate(off_values);
-			yield();
 	}
 	else
 	{
@@ -102,7 +101,6 @@ void QTRSensors::read(unsigned int *sensor_values, unsigned char readMode)
 		emittersOff();
 		if(readMode == QTR_EMITTERS_ON_AND_OFF)
 			((QTRSensorsAnalog*)this)->readPrivate(off_values);
-			yield();
 	}
 
 	if(readMode == QTR_EMITTERS_ON_AND_OFF)
@@ -110,7 +108,6 @@ void QTRSensors::read(unsigned int *sensor_values, unsigned char readMode)
 		for(i=0;i<_numSensors;i++)
 		{
 			sensor_values[i] += _maxValue - off_values[i];
-			yield();
 		}
 	}
 }
@@ -553,6 +550,7 @@ void QTRSensorsAnalog::readPrivate(unsigned int *sensor_values)
 		for (i = 0; i < _numSensors; i++)
 		{
 			sensor_values[i] += analogRead(_pins[i]);	// add the conversion result
+			yield();
 		}
 	}
 	
