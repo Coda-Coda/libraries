@@ -7,6 +7,9 @@
  *	Yeah I know I just copied Daniel's summary but at least mine is
  *	formatted nicely.
  */
+ 
+#ifndef ULTRASONIC_H
+#define ULTRASONIC_H
 
 #include <Arduino.h>
 
@@ -18,4 +21,6 @@ public:
 private:
 	int triggerPin, echoPin;
 };
+
+#endif
 
