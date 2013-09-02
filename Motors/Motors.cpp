@@ -41,7 +41,7 @@ void Motors::setAccelerations (float leftAcceleration, float rightAcceleration) 
 
 void Motors::setMaxSpeeds (float leftMaxSpeed, float rightMaxSpeed) {
       _leftMotor.setMaxSpeed(leftMaxSpeed);
-      _rightMotor.setSpeed(rightMaxSpeed);
+      _rightMotor.setMaxSpeed(rightMaxSpeed);
 	}
 
 //Definition of Movement related functions
@@ -111,6 +111,7 @@ void Motors::setActiveSpeeds(float leftSpeed, float rightSpeed) {
   }
 }
 
+
 void Motors::setup()
 {
   _leftMotor.setMaxSpeed(900);
@@ -128,4 +129,9 @@ void Motors::wait() {
 void Motors::run() {
   _leftMotor.run();
   _rightMotor.run();  
+}
+
+void Motors::runSpeed() {
+  _leftMotor.runSpeed();
+  _rightMotor.runSpeed();
 }

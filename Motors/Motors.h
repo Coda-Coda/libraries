@@ -26,6 +26,7 @@ class Motors
 	void setSpeeds (float leftSpeed, float rightSpeed);
 	void setAccelerations (float righttAcceleration, float rightAcceleration);
 	void setMaxSpeeds (float leftMaxSpeed, float rightMaxSpeed);
+	void runSpeed();
   private:
     long cmToSteps(float cm);
 	float _leftSpeed;
