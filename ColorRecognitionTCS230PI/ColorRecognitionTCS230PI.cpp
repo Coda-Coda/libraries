@@ -43,17 +43,20 @@ void ColorRecognitionTCS230PI::adjustBlackBalance() {
 
 unsigned char ColorRecognitionTCS230PI::getRed() {
     setFilter(RED_FILTER);
-    return (unsigned char) constrain((map(getFrequency(SAMPLES), minFrequency[0], maxFrequency[0], 0, 255)), 0, 200);
+	long currentGet = map(getFrequency(SAMPLES), minFrequency[0], maxFrequency[0], 0, 255);
+    return (unsigned char) constrain(currentGet, 0, 200);
 }
 
 unsigned char ColorRecognitionTCS230PI::getGreen() {
     setFilter(GREEN_FILTER);
-    return (unsigned char) constrain((map(getFrequency(SAMPLES), minFrequency[1], maxFrequency[1], 0, 255)), 0, 200);
+	long currentGet = map(getFrequency(SAMPLES), minFrequency[0], maxFrequency[0], 0, 255);
+    return (unsigned char) constrain(currentGet, 0, 200);
 }
 
 unsigned char ColorRecognitionTCS230PI::getBlue() {
     setFilter(BLUE_FILTER);
-    return (unsigned char) constrain((map(getFrequency(SAMPLES), minFrequency[2], maxFrequency[2], 0, 255)), 0, 200);
+    long currentGet = map(getFrequency(SAMPLES), minFrequency[0], maxFrequency[0], 0, 255);
+    return (unsigned char) constrain(currentGet, 0, 200);
 }
 
 bool ColorRecognitionTCS230PI::fillRGB(unsigned char buf[3]) {
