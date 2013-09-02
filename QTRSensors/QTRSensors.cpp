@@ -351,6 +351,7 @@ int QTRSensors::readLine(unsigned int *sensor_values,
 			avg += (long)(value) * (i * 1000);
 			sum += value;
 		}
+		yield();
 	}
 
 	if(!on_line)
@@ -542,8 +543,10 @@ void QTRSensorsAnalog::readPrivate(unsigned int *sensor_values)
 		return;
 
 	// reset the values
-	for(i = 0; i < _numSensors; i++)
+	for(i = 0; i < _numSensors; i++) {
 		sensor_values[i] = 0;
+		yield();
+	}
 
 	for (j = 0; j < _numSamplesPerSensor; j++)
 	{
@@ -555,9 +558,11 @@ void QTRSensorsAnalog::readPrivate(unsigned int *sensor_values)
 	}
 	
 	// get the rounded average of the readings for each sensor
-	for (i = 0; i < _numSensors; i++)
+	for (i = 0; i < _numSensors; i++) {
 		sensor_values[i] = (sensor_values[i] + (_numSamplesPerSensor >> 1)) /
 			_numSamplesPerSensor;
+		yield();
+	}
 }
 
 // the destructor frees up allocated memory
