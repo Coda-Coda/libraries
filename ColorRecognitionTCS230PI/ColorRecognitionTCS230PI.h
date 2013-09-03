@@ -76,7 +76,7 @@
  * present in an area over a given time period. 
  */
 
-#define SAMPLES   255
+#define SAMPLES   50
 
 class ColorRecognitionTCS230PI : public ColorRecognition {
 private:
