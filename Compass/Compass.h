@@ -13,8 +13,6 @@ class Compass
   public:
     Compass();
     float heading();
-  private:
-    int _test;
 };
 
 #endif
