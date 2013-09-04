@@ -174,12 +174,6 @@ void QTRSensors::calibrate(unsigned char readMode)
 	}
 }
 
-void QTRSensors::initialiseArrays(){
-    calibratedMaximumOn[8];
-	calibratedMinimumOn[8];
-}
-    
-
 void QTRSensors::calibrateOnOrOff(unsigned int **calibratedMinimum,
 										unsigned int **calibratedMaximum,
 										unsigned char readMode)
@@ -241,9 +235,6 @@ void QTRSensors::calibrateOnOrOff(unsigned int **calibratedMinimum,
 			(*calibratedMinimum)[i] = max_sensor_values[i];
 	}
 }
-
-
-	
 
 
 // Returns values calibrated to a value between 0 and 1000, where
