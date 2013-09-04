@@ -72,6 +72,9 @@ class QTRSensors
 	// readings, but you may wish to use these for testing purposes.
 	void emittersOff();
 	void emittersOn();
+	
+	//Written just For our robot with 8 sensors
+	void initialiseArrays();
   
 	// Reads the sensors for calibration.  The sensor values are
 	// not returned; instead, the maximum and minimum values found
