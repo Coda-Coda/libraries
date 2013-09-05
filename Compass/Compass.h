@@ -13,6 +13,7 @@ class Compass
   public:
     Compass();
     float heading();
+	float correctedHeading();
 };
 
 #endif
