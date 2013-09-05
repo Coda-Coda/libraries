@@ -39,3 +39,13 @@ float Compass::heading(){
 
   return headingInt;
 }
+
+float Compass::correctedHeading(){
+  float currentHeading = heading();
+  if (currentHeading < 167) {
+    return (-0.002*currentHeading*currentHeading+1.4166*currentHeading-1.1598);
+  }
+  else {
+    return (0.0008*currentHeading*currentHeading+0.5107*currentHeading+74.938);
+  }
+}
