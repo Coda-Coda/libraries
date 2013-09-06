@@ -19,6 +19,7 @@ class Motors
     void swingWithRight (float deg);
     void swingWithLeft(float deg);
     void setActiveSpeeds(float leftSpeed, float rightSpeed);
+    void rotateCircle(float angle, float radius);
     void setup();
     void run();
 	void wait();
