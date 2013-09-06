@@ -111,25 +111,6 @@ void Motors::setActiveSpeeds(float leftSpeed, float rightSpeed) {
   }
 }
 
-/* Rotates about a point off axis. angle > 0 rotates clockwise. Always moves forwards */
-void Motors::rotateCircle(float angle, float radius)
-{
-  float leftDist;
-  float rightDist;
-  if (angle < 0.0)
-  {
-    leftDist = (angle / 360.0) * (2.0 * 3.14159265358979 * (radius - 6.875));
-    rightDist = (angle / 360.0) * (2.0 * 3.14159265358979 * (radius + 6.875));
-  }
-  else
-  {
-    leftDist = (angle / 360.0) * (2.0 * 3.14159265358979 * (radius + 6.875));
-    rightDist = (angle / 360.0) * (2.0 * 3.14159265358979 * (radius - 6.875));
-  }
-  _leftMotor.move(leftDist);
-  _rightMotor.move(rightDist);
-}
-
 void Motors::setup()
 {
   _leftMotor.setMaxSpeed(900);
