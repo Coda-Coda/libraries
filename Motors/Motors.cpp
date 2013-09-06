@@ -112,7 +112,7 @@ void Motors::setActiveSpeeds(float leftSpeed, float rightSpeed) {
 }
 
 /* Rotates about a point off axis. angle > 0 rotates clockwise. Always moves forwards */
-void rotateCircle(float angle, float radius)
+void Motors::rotateCircle(float angle, float radius)
 {
   float leftDist;
   float rightDist;
