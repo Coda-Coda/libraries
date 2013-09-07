@@ -28,10 +28,10 @@ float Ultrasonic::distance()
 	digitalWrite(triggerPin, LOW);
 
 	/* duration is the time until echoPin goes HIGH (unless it times out) */
-	duration = pulseIn(echoPin, HIGH, 3000); // 3000us would mean its beyond 50cm, which is good enough in our case
+	duration = pulseIn(echoPin, HIGH, 7000); // 3000us would mean its beyond 50cm, which is good enough in our case
 	if (duration == 0)
 	{
-		duration = 3000;
+		duration = 7000;
 	}
 	delay(50);
 	return (float)duration / 58.4;
