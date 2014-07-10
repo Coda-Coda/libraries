@@ -1,10 +1,13 @@
-/* A  class for transmitting movement data over I2C to the Arduino controlling
- * motors, as opposed to directly using Motors library. 
+/* MotorDriver.h - A  class for transmitting movement data over I2C to the
+ * Arduino controlling motors, as opposed to directly using Motors library. 
  * 
  * Author: Aaron Keesing, 2014
- * License: Public Domain
+ * License: Released into the Public Domain.
  * Version: 1.0
  */
+
+#ifndef MOTOR_DRIVER_H
+#define MOTOR_DRIVER_H
 
 #include "Arduino.h"
 #include "Wire.h"
@@ -36,4 +39,6 @@ private:
     float _rightSpeed;
     int _address;
     char _buffer[25];
-}
+};
+
+#endif /* MOTOR_DRIVERS_H */

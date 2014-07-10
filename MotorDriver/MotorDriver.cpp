@@ -6,7 +6,7 @@ MotorDriver::MotorDriver(int address)
     _rightSpeed = 500;
 }
 
-MotorDriver::setup()
+void MotorDriver::setup()
 {
     
 }
@@ -39,28 +39,32 @@ void MotorDriver::setActiveSpeeds(float left, float right)
 {
     char *f_left = dtostrf(left, 3, 1, _buffer);
     char *f_right = dtostrf(right, 3, 1, _buffer);
-    writeToWire(5, f_left + "," + f_right);
+    strcpy(_buffer, f_left);
+    writeToWire(5, strcat(f_left, strcat(",", f_right)));
 }
 
 void MotorDriver::setSpeeds(float left, float right)
 {
     char *f_left = dtostrf(left, 4, 1, _buffer);
     char *f_right = dtostrf(right, 4, 1, _buffer);
-    writeToWire(6, f_left + "," + f_right);
+    strcpy(_buffer, f_left);
+    writeToWire(6, strcat(f_left, strcat(",", f_right)));
 }
 
 void MotorDriver::setMaxSpeeds(float left, float right)
 {
     char *f_left = dtostrf(left, 3, 1, _buffer);
     char *f_right = dtostrf(right, 3, 1, _buffer);
-    writeToWire(7, f_left + "," + f_right);
+    strcpy(_buffer, f_left);
+    writeToWire(7, strcat(f_left, strcat(",", f_right)));
 }
 
 void MotorDriver::setAccelerations(float left, float right)
 {
     char *f_left = dtostrf(left, 3, 1, _buffer);
     char *f_right = dtostrf(right, 3, 1, _buffer);
-    writeToWire(8, f_left + "," + f_right);
+    strcpy(_buffer, f_left);
+    writeToWire(8, strcat(f_left, strcat(",", f_right)));
 }
 
 boolean MotorDriver::running()
@@ -68,7 +72,7 @@ boolean MotorDriver::running()
     writeToWire(9, "");
     while (Wire.available())
     {
-	running = (boolean)Wire.read();
+	return (Wire.read() == 0) ? true : false;
     }
 }
 

@@ -6,9 +6,8 @@ Main Program must include
 Wire.begin();
 */
 
-#include "Arduino.h"
+
 #include "Compass.h"
-#include <Wire.h>
 
 Compass::Compass() {
   

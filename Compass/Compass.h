@@ -1,5 +1,5 @@
 /* HM6352 Compass sensor library
-By Daniel Britten
+By Daniel Britten, 2013
 V1.0
 */
 
@@ -7,6 +7,7 @@ V1.0
 #define Compass_h
 
 #include "Arduino.h"
+#include <Wire.h>
 
 class Compass
 {

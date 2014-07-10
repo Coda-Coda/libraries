@@ -9,31 +9,31 @@
 
 Ultrasonic::Ultrasonic(int trigger, int echo)
 {
-	triggerPin = trigger;
-	echoPin = echo;
-	pinMode(triggerPin, OUTPUT);
-	pinMode(echoPin, INPUT);
+    triggerPin = trigger;
+    echoPin = echo;
+    pinMode(triggerPin, OUTPUT);
+    pinMode(echoPin, INPUT);
 }
 
 float Ultrasonic::distance()
 {
-	long duration;
+    long duration;
   
-	digitalWrite(triggerPin, LOW);
-	delayMicroseconds(2);
+    digitalWrite(triggerPin, LOW);
+    delayMicroseconds(2);
 
-	/* The 10us wait here is important */
-	digitalWrite(triggerPin, HIGH);
-	delayMicroseconds(10);
-	digitalWrite(triggerPin, LOW);
+    /* The 10us wait here is important */
+    digitalWrite(triggerPin, HIGH);
+    delayMicroseconds(10);
+    digitalWrite(triggerPin, LOW);
 
-	/* duration is the time until echoPin goes HIGH (unless it times out) */
-	duration = pulseIn(echoPin, HIGH, 7000); // 3000us would mean its beyond 50cm, which is good enough in our case
-	if (duration == 0)
-	{
-		duration = 7000;
-	}
-	delay(50);
-	return (float)duration / 58.4;
+    /* duration is the time until echoPin goes HIGH (unless it times out) */
+    duration = pulseIn(echoPin, HIGH, 7000); // 3000us would mean its beyond 50cm, which is good enough in our case
+    if (duration == 0)
+    {
+	duration = 7000;
+    }
+    delay(50);
+    return (float)duration / 58.4;
 }
 
