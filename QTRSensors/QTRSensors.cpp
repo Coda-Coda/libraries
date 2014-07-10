@@ -38,8 +38,6 @@
 #define QTR_RC		0
 #define QTR_A		1
 
-
-
 // Base class data member initialization (called by derived class init())
 void QTRSensors::init(unsigned char *pins, unsigned char numSensors, 
   unsigned char emitterPin, unsigned char type)
@@ -351,7 +349,7 @@ int QTRSensors::readLine(unsigned int *sensor_values,
 			avg += (long)(value) * (i * 1000);
 			sum += value;
 		}
-		yield();
+		//yield();
 	}
 
 	if(!on_line)
@@ -545,7 +543,7 @@ void QTRSensorsAnalog::readPrivate(unsigned int *sensor_values)
 	// reset the values
 	for(i = 0; i < _numSensors; i++) {
 		sensor_values[i] = 0;
-		yield();
+		//yield();
 	}
 
 	for (j = 0; j < _numSamplesPerSensor; j++)
@@ -553,7 +551,7 @@ void QTRSensorsAnalog::readPrivate(unsigned int *sensor_values)
 		for (i = 0; i < _numSensors; i++)
 		{
 			sensor_values[i] += analogRead(_pins[i]);	// add the conversion result
-			yield();
+			//yield();
 		}
 	}
 	
@@ -561,7 +559,7 @@ void QTRSensorsAnalog::readPrivate(unsigned int *sensor_values)
 	for (i = 0; i < _numSensors; i++) {
 		sensor_values[i] = (sensor_values[i] + (_numSamplesPerSensor >> 1)) /
 			_numSamplesPerSensor;
-		yield();
+		//yield();
 	}
 }
 

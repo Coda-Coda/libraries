@@ -10,10 +10,10 @@ V1.0
 
 class Compass
 {
-  public:
+public:
     Compass();
     float heading();
-	float correctedHeading();
+    float correctedHeading();
 };
 
 #endif

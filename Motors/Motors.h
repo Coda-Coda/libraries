@@ -12,8 +12,8 @@ V1.0
 
 class Motors
 {
-  public:
-    Motors(AccelStepper, AccelStepper);
+public:
+    Motors(AccelStepper leftMotor, AccelStepper rightMotor);
     void straight(float cm);
     void rotate(float deg);
     void swingWithRight (float deg);
@@ -21,17 +21,18 @@ class Motors
     void setActiveSpeeds(float leftSpeed, float rightSpeed);
     void setup();
     void run();
-	void wait();
+    void wait();
     boolean running();
-	void setSpeeds (float leftSpeed, float rightSpeed);
-	void setAccelerations (float righttAcceleration, float rightAcceleration);
-	void setMaxSpeeds (float leftMaxSpeed, float rightMaxSpeed);
-	void runSpeed();
-  private:
+    void setSpeeds (float leftSpeed, float rightSpeed);
+    void setAccelerations (float righttAcceleration, float rightAcceleration);
+    void setMaxSpeeds (float leftMaxSpeed, float rightMaxSpeed);
+    void runSpeed();
+
+private:
     long cmToSteps(float cm);
-	float _leftSpeed;
+    float _leftSpeed;
     float _rightSpeed;
-	AccelStepper _leftMotor;
+    AccelStepper _leftMotor;
     AccelStepper _rightMotor;
 };
 
