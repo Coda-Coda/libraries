@@ -33,8 +33,8 @@ public:
 
 private:
     long cmToSteps(float cm);
-    void writeToWire(byte code, char *str);
-    void writeToWire(byte code, long val1, long val2);
+    void writeToWire(int code, char *str);
+    void writeToWire(int code, long val1, long val2);
     float _leftSpeed;
     float _rightSpeed;
     int _address;

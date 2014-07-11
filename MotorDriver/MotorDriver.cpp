@@ -4,6 +4,7 @@ MotorDriver::MotorDriver(int address)
 {
     _leftSpeed = 500;
     _rightSpeed = 500;
+    _address = address;
 }
 
 void MotorDriver::setup()
@@ -37,48 +38,72 @@ void MotorDriver::swingWithLeft(float deg)
 
 void MotorDriver::setActiveSpeeds(float left, float right)
 {
-    char *f_left = dtostrf(left, 3, 1, _buffer);
-    char *f_right = dtostrf(right, 3, 1, _buffer);
-    strcpy(_buffer, f_left);
-    writeToWire(5, strcat(f_left, strcat(",", f_right)));
+    char b[25];
+    char *f_left = dtostrf(left, 4, 1, _buffer);
+    strcpy(b, f_left);
+    char *f_right = dtostrf(right, 4, 1, _buffer);
+    strcat(b, ",");
+    strcat(b, f_right);
+    writeToWire(5, b);
 }
 
 void MotorDriver::setSpeeds(float left, float right)
 {
+    char b[25];
     char *f_left = dtostrf(left, 4, 1, _buffer);
+    strcpy(b, f_left);
     char *f_right = dtostrf(right, 4, 1, _buffer);
-    strcpy(_buffer, f_left);
-    writeToWire(6, strcat(f_left, strcat(",", f_right)));
+    strcat(b, ",");
+    strcat(b, f_right);
+    writeToWire(6, b);
 }
 
 void MotorDriver::setMaxSpeeds(float left, float right)
 {
-    char *f_left = dtostrf(left, 3, 1, _buffer);
-    char *f_right = dtostrf(right, 3, 1, _buffer);
-    strcpy(_buffer, f_left);
-    writeToWire(7, strcat(f_left, strcat(",", f_right)));
+    char b[25];
+    char *f_left = dtostrf(left, 4, 1, _buffer);
+    strcpy(b, f_left);
+    char *f_right = dtostrf(right, 4, 1, _buffer);
+    strcat(b, ",");
+    strcat(b, f_right);
+    writeToWire(7, b);
 }
 
 void MotorDriver::setAccelerations(float left, float right)
 {
-    char *f_left = dtostrf(left, 3, 1, _buffer);
-    char *f_right = dtostrf(right, 3, 1, _buffer);
-    strcpy(_buffer, f_left);
-    writeToWire(8, strcat(f_left, strcat(",", f_right)));
+    char b[25];
+    char *f_left = dtostrf(left, 4, 1, _buffer);
+    strcpy(b, f_left);
+    char *f_right = dtostrf(right, 4, 1, _buffer);
+    strcat(b, ",");
+    strcat(b, f_right);
+    writeToWire(8, b);
 }
 
 boolean MotorDriver::running()
 {
     writeToWire(9, "");
-    while (Wire.available())
+    Wire.requestFrom(_address, 1);
+    if (Wire.available())
     {
-	return (Wire.read() == 0) ? true : false;
+	if (Wire.read() == 1)
+	{
+	    Serial.println("Says it's running.");
+	    return true;
+	}
+	else
+	{
+	    Serial.println("Says it's not running.");
+	    return false;
+	}
+	//return (Wire.read() == 1);
     }
+    return true;
 }
 
 void MotorDriver::wait()
 {
-    while (running()) {} //Let the other arduino do its thing
+    while (running()) {Serial.println("Waiting...");} //Let the other arduino do its thing
 }
 
 long MotorDriver::cmToSteps(float cm)
@@ -86,15 +111,27 @@ long MotorDriver::cmToSteps(float cm)
     return (long)((cm * 1600.0)/(6.46 * 3.14159265358979));
 }
 
-void MotorDriver::writeToWire(byte code, char *str)
+void MotorDriver::writeToWire(int code, char *str)
 {
+    Serial.println("Beginning transmission to address.");
     Wire.beginTransmission(_address);
+    Serial.println("Writing code to address.");
     Wire.write(code);
-    if (str != "") Wire.write(str);
+    Serial.print("Wrote code ");
+    Serial.print(code);
+    Serial.print(" to ");
+    Serial.println(_address, HEX);
+    if (str != "")
+    {
+	Wire.write(str);
+	Serial.print("Wrote data '");
+	Serial.print(str);
+	Serial.println("'.");
+    }
     Wire.endTransmission();
 }
 
-void MotorDriver::writeToWire(byte code, long val1, long val2)
+void MotorDriver::writeToWire(int code, long val1, long val2)
 {
     Wire.beginTransmission(_address);
     Wire.write(code);

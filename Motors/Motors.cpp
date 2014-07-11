@@ -54,6 +54,11 @@ boolean Motors::running() {
     }
 }
 
+long Motors::cmToSteps(float cm)
+{
+    return ((long)((cm * 1600.0)/(6.46 * 3.14159265358979)));
+}
+
 void Motors::straight(float cm) {
     _leftMotor.move(cmToSteps(cm));
     _rightMotor.move(-cmToSteps(cm));
@@ -116,7 +121,7 @@ void Motors::setup()
 }
 
 void Motors::wait() {
-    while(running()) yield(); //Should be able to put running() here, but it didn't seem to work...
+    while(running()) {} //yield(); //Should be able to put running() here, but it didn't seem to work...
 }
 
 void Motors::run() {
