@@ -119,7 +119,7 @@ void MotorDriver::writeToWire(int code, char *str)
     Wire.write(code);
     Serial.print("Wrote code ");
     Serial.print(code);
-    Serial.print(" to ");
+    Serial.print(" to 0x");
     Serial.println(_address, HEX);
     if (str != "")
     {
@@ -128,7 +128,9 @@ void MotorDriver::writeToWire(int code, char *str)
 	Serial.print(str);
 	Serial.println("'.");
     }
-    Wire.endTransmission();
+    int e = Wire.endTransmission();
+    Serial.print("Received code ");
+    Serial.println(e);
 }
 
 void MotorDriver::writeToWire(int code, long val1, long val2)
