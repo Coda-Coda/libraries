@@ -113,33 +113,6 @@ void MotorDriver::wait()
     while (running()) {Serial.println("Waiting..."); delay(30);} //Let the other arduino do its thing
 }
 
-long MotorDriver::cmToSteps(float cm)
-{
-    return (long)((cm * 1600.0)/(6.46 * 3.14159265358979));
-}
-
-void MotorDriver::writeToWire(int code, char *str)
-{
-    Serial.println("Beginning transmission to address.");
-    Wire.beginTransmission(_address);
-    Serial.println("Writing code to address.");
-    Wire.write(code);
-    Serial.print("Wrote code ");
-    Serial.print(code);
-    Serial.print(" to 0x");
-    Serial.println(_address, HEX);
-    if (str != "")
-    {
-	Wire.write(str);
-	Serial.print("Wrote data '");
-	Serial.print(str);
-	Serial.println("'.");
-    }
-    int e = Wire.endTransmission();
-    Serial.print("Received code ");
-    Serial.println(e);
-}
-
 void MotorDriver::writeToWire(int code, float val1, float val2)
 {
     Serial.println("Beginning transmission to address.");

@@ -32,8 +32,6 @@ public:
     void wait();
 
 private:
-    long cmToSteps(float cm);
-    void writeToWire(int code, char *str);
     void writeToWire(int code, float val1, float val2);
     float _leftSpeed;
     float _rightSpeed;

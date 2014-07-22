@@ -23,8 +23,8 @@ AccelStepper rightMotor(AccelStepper::DRIVER, 5, 4);
 Motors::Motors(AccelStepper leftMotor, AccelStepper rightMotor) {
     _leftMotor = leftMotor;
     _rightMotor = rightMotor;
-    float _leftSpeed = 500; //default _leftSpeed
-    float _rightSpeed = 500; //default _rightSpeed
+    float _leftSpeed = 500.0; //default _leftSpeed
+    float _rightSpeed = 500.0; //default _rightSpeed
 }
 
 void Motors::setSpeeds (float leftSpeed, float rightSpeed) {
@@ -56,7 +56,7 @@ boolean Motors::running() {
 
 long Motors::cmToSteps(float cm)
 {
-    return ((long)((cm * 1600.0)/(6.46 * 3.14159265358979)));
+    return ((long)((cm * 1600.0)/(6.28 * 3.14159265358979)));
 }
 
 void Motors::straight(float cm) {
