@@ -20,6 +20,8 @@ AccelStepper rightMotor(AccelStepper::DRIVER, 5, 4);
 #include "Motors.h"
 #include "AccelStepper.h"
 
+#define WHEEL_SPACING 13.95 //cm
+
 Motors::Motors(AccelStepper leftMotor, AccelStepper rightMotor) {
     _leftMotor = leftMotor;
     _rightMotor = rightMotor;
@@ -56,7 +58,7 @@ boolean Motors::running() {
 
 long Motors::cmToSteps(float cm)
 {
-    return ((long)((cm * 1600.0)/(6.28 * 3.14159265358979)));
+    return ((long)((cm * 1600.0)/(6.26 * 3.14159265358979)));
 }
 
 void Motors::straight(float cm) {
@@ -65,18 +67,18 @@ void Motors::straight(float cm) {
 }
 
 void Motors::rotate(float deg) {//positive rotates Right, negative rotates Left
-    _leftMotor.move(cmToSteps((deg/360.0)*3.14159265358979*13.75)); //Note that 13.75 is the diameter that gives the most accurate movement for a 360 rotate
-    _rightMotor.move(cmToSteps((deg/360.0)*3.14159265358979*13.75));
+    _leftMotor.move(cmToSteps((deg/360.0)*3.14159265358979*WHEEL_SPACING)); //Note that 13.75 is the diameter that gives the most accurate movement for a 360 rotate
+    _rightMotor.move(cmToSteps((deg/360.0)*3.14159265358979*WHEEL_SPACING));
 }
 
 void Motors::swingWithRight (float deg) { //Positive turns LEFT!!!  Negative turns RIGHT!!! (going backwards)
     _leftMotor.move(0);
-    _rightMotor.move(-cmToSteps((deg/360.0)*3.14159265358979*13.75*2));
+    _rightMotor.move(-cmToSteps((deg/360.0)*3.14159265358979*WHEEL_SPACING*2));
 }
 
 void Motors::swingWithLeft(float deg) {//Positive turns Right, Negative turns Left (going backwards)
     _rightMotor.move(0);
-    _leftMotor.move(cmToSteps((deg/360.0)*3.14159265358979*13.75*2));
+    _leftMotor.move(cmToSteps((deg/360.0)*3.14159265358979*WHEEL_SPACING*2));
 }
 
 void Motors::setActiveSpeeds(float leftSpeed, float rightSpeed) {
