@@ -95,12 +95,10 @@ boolean MotorDriver::running()
     {
 	if (Wire.read() != 0)
 	{
-	    Serial.println("Says it's running.");
 	    return true;
 	}
 	else
 	{
-	    Serial.println("Says it's not running.");
 	    return false;
 	}
 	//return (Wire.read() == 1);
@@ -110,12 +108,12 @@ boolean MotorDriver::running()
 
 void MotorDriver::wait()
 {
-    while (running()) {Serial.println("Waiting..."); delay(30);} //Let the other arduino do its thing
+    while (running()) {delay(30);} //Let the other arduino do its thing
 }
 
 void MotorDriver::writeToWire(int code, float val1, float val2)
 {
-    Serial.println("Beginning transmission to address.");
+    //Serial.println("Beginning transmission to address.");
     Wire.beginTransmission(_address);
     Wire.write(code);
 
@@ -131,7 +129,7 @@ void MotorDriver::writeToWire(int code, float val1, float val2)
     u.fval = val2;
     Wire.write(u.b, 4);
     int e = Wire.endTransmission();
-    Serial.print("Received code ");
-    Serial.println(e);
+    //Serial.print("Received code ");
+    //Serial.println(e);
 }
 

@@ -33,8 +33,8 @@ float Compass::heading(){
     byte MSB = Wire.read();
     byte LSB = Wire.read();
 
-    float headingSum = (MSB << 8) + LSB; //(MSB / LSB sum)
-    float headingInt = headingSum / 10.0; 
+    float headingSum = (float)((MSB << 8) + LSB); //(MSB / LSB sum)
+    float headingInt = headingSum / 10.0;
 
     return headingInt;
 }
